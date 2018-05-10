@@ -1,6 +1,3 @@
-<?php
-  inlcude("includes/header.php");
-?>
 
 <div class="contain-to-grid ">
 <nav class="top-bar" data-topbar role="navigation">
@@ -610,11 +607,11 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.0/js/foundation.min.js'></script>
 
-      <script src="/update/include/index.js"></script>
+      <script src="https://uofastore.com/update/include/index.js"></script>
       <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
 
-      <script src="/update/include/info-visible.js"></script>
+      <script src="https://uofastore.com/update/include/info-visible.js"></script>
 
 <script>
     $(document).foundation();
@@ -627,7 +624,7 @@
 jQuery(document).ready(function($){
 
 if (sessionStorage.getItem('myModal') !== 'true') {
-$('body').append('<div id="myModal" class="reveal-modal-pop" data-reveal><a class="close-reveal-modal"><center><br /><img src="/../images/popup.png" class="desk_pop"><img src="/../images/popup_mobile.png" class="mobile_pop"></center></a></div>')
+$('body').append('<div id="myModal" class="reveal-modal-pop" data-reveal><a class="close-reveal-modal"><center><br /><img src="https://uofastore.com/../images/popup.png" class="desk_pop"><img src="https://uofastore.com/../images/popup_mobile.png" class="mobile_pop"></center></a></div>')
 sessionStorage.setItem('myModal','true');
 }
 
@@ -950,8 +947,3 @@ SUMMER: You may return textbooks within the first week of classes start; afterwa
     </div>
 </div>
 </div>
-
-
-<?php
-  inlcude("includes/footer.php");
-?>
