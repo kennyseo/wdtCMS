@@ -1,4 +1,4 @@
 .git
 .ftpconfig
 .ftpignore
-model/connect.php
+connect.php
