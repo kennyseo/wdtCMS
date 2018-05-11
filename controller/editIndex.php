@@ -1,34 +1,130 @@
 <?php
-  include("includes/header.php");
-  include("includes/nav.php");
+  include("../includes/header.php");
+  include("../includes/nav.php");
 ?>
 <a href="https://shop.uofastore.com/courselistbuilder.aspx"><img src="https://uofastore.com/images/banner/2017-08-04_BeatTheRush.png" alt="Order Textbooks" /></a>
 
 
-
-
-
+<style>
+.error {color: #FF0000;}
+</style>
+<!--
 <?php
 // define variables and set to empty values
-$nameErr = $emailErr = $genderErr = $websiteErr = "";
-$name = $email = $gender = $comment = $website = "";
+$bannerLinkErr = $bannerImgErr = $titleOneErr = $titleTwoErr = $textOneErr = $textTwoErr = $btnLink1Err = $btnLink2Err = $btn1Err = $btn2Err = $emailErr = $genderErr = $websiteErr = "";
+
+$titleOne = $titleTwo = $textOne = $textTwo = $name = $email = $website = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty($_POST["name"])) {
-    $nameErr = "Name is required";
+
+  if (empty($_POST["bannerLink"])) {
+    $bannerLinkErr = "bannerLink is required";
   } else {
-    $name = test_input($_POST["name"]);
+    $bannerLink = test_input($_POST["bannerLink"]);
     // check if name only contains letters and whitespace
-    if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-      $nameErr = "Only letters and white space allowed";
+    if (!preg_match("/^[a-zA-Z ]*$/",$bannerLink)) {
+      $bannerLinkErr = "Only letters and white space allowed";
     }
   }
+
+  if (empty($_POST["bannerImg"])) {
+    $bannerImgErr = "bannerImg is required";
+  } else {
+    $bannerImg = test_input($_POST["bannerImg"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$bannerImg)) {
+      $bannerImgErr = "Only letters and white space allowed";
+    }
+  }
+
+  if (empty($_POST["titleOne"])) {
+    $titleOneErr = "titleOne is required";
+  } else {
+    $titleOne = test_input($_POST["titleOne"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$titleOne)) {
+      $titleOneErr = "Only letters and white space allowed";
+    }
+  }
+
+  if (empty($_POST["titleTwo"])) {
+    $titleTwoErr = "titleTwo is required";
+  } else {
+    $titleTwo = test_input($_POST["titleTwo"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$titleTwo)) {
+      $titleTwoErr = "Only letters and white space allowed";
+    }
+  }
+
+  if (empty($_POST["textOne"])) {
+    $textOneErr = "textOne is required";
+  } else {
+    $textOne = test_input($_POST["textOne"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$textOne)) {
+      $textOneErr = "Only letters and white space allowed";
+    }
+  }
+
+  if (empty($_POST["textTwo"])) {
+    $textTwoErr = "textTwo is required";
+  } else {
+    $textTwo = test_input($_POST["textTwo"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$textTwo)) {
+      $textTwoErr = "Only letters and white space allowed";
+    }
+  }
+
+  if (empty($_POST["btnLink1"])) {
+    $btnLink1Err = "btnLink1 is required";
+  } else {
+    $btnLink1 = test_input($_POST["btnLink1"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$btnLink1)) {
+      $btnLink1Err = "Only letters and white space allowed";
+    }
+  }
+
+  if (empty($_POST["btn1"])) {
+    $btn1Err = "btn1 is required";
+  } else {
+    $btn1 = test_input($_POST["btn1"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$btn1)) {
+      $btn1Err = "Only letters and white space allowed";
+    }
+  }
+
+  if (empty($_POST["btnLink2"])) {
+    $btnLink2Err = "btnLink2 is required";
+  } else {
+    $btnLink2 = test_input($_POST["btnLink2"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$btnLink2)) {
+      $btnLink2Err = "Only letters and white space allowed";
+    }
+  }
+
+  if (empty($_POST["btn2"])) {
+    $btn2Err = "btn2 is required";
+  } else {
+    $btn2 = test_input($_POST["btn2"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$btn2)) {
+      $btn2Err = "Only letters and white space allowed";
+    }
+  }
+
+
+
 
   if (empty($_POST["email"])) {
     $emailErr = "Email is required";
   } else {
     $email = test_input($_POST["email"]);
-    // check if e-mail address is well-formed
+    // check if email address is well-formed
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $emailErr = "Invalid email format";
     }
@@ -44,17 +140,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 
-  if (empty($_POST["comment"])) {
-    $comment = "";
-  } else {
-    $comment = test_input($_POST["comment"]);
-  }
-
-  if (empty($_POST["gender"])) {
-    $genderErr = "Gender is required";
-  } else {
-    $gender = test_input($_POST["gender"]);
-  }
 }
 
 function test_input($data) {
@@ -66,7 +151,85 @@ function test_input($data) {
 ?>
 
 
+<div class="container2">
+<div class="bar">
+<h2>PHP Form Validation Example</h2>
+<p><span class="error">* required field</span></p>
+<form method="post" action="../index.php">
+  bannerImg: <input type="text" name="bannerImg" value="<?php echo $bannerImg;?>">
+  <span class="error">* <?php echo $bannerImgErr;?></span>
+  <br><br>
+  bannerLink: <input type="text" name="bannerLink" value="<?php echo $bannerLink;?>">
+  <span class="error">* <?php echo $bannerLinkErr;?></span>
+  <br><br>
 
+  titleOne: <input type="text" name="titleOne" value="<?php echo $titleOne;?>">
+  <span class="error">* <?php echo $titleOneErr;?></span>
+  <br><br>
+  titleTwo: <input type="text" name="titleTwo" value="<?php echo $titleTwo;?>">
+  <span class="error">* <?php echo $titleTwoErr;?></span>
+  <br><br>
+
+  textOne: <input type="text" name="textOne" value="<?php echo $textOne;?>">
+  <span class="error">* <?php echo $textOneErr;?></span>
+  <br><br>
+  textTwo: <input type="text" name="textTwo" value="<?php echo $textTwo;?>">
+  <span class="error">* <?php echo $textTwoErr;?></span>
+  <br><br>
+
+  btnLink1: <input type="text" name="btnLink1" value="<?php echo $btnLink1;?>">
+  <span class="error">* <?php echo $btnLink1Err;?></span>
+  <br><br>
+  btnLink2: <input type="text" name="btnLink2" value="<?php echo $btnLink2;?>">
+  <span class="error">* <?php echo $btnLink2Err;?></span>
+  <br><br>
+
+  btn1: <input type="text" name="btn1" value="<?php echo $btn1;?>">
+  <span class="error">* <?php echo $btn1Err;?></span>
+  <br><br>
+  btn2: <input type="text" name="btn2" value="<?php echo $btn2;?>">
+  <span class="error">* <?php echo $btn2Err;?></span>
+  <br><br>
+
+
+
+  Name: <input type="text" name="name" value="<?php echo $name;?>">
+  <span class="error">* <?php echo $nameErr;?></span>
+  <br><br>
+  email: <input type="text" name="email" value="<?php echo $email;?>">
+  <span class="error">* <?php echo $emailErr;?></span>
+  <br><br>
+  Website: <input type="text" name="website" value="<?php echo $website;?>">
+  <span class="error"><?php echo $websiteErr;?></span>
+  <br><br>
+  Comment: <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+  <br><br>
+  Gender:
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other
+  <span class="error">* <?php echo $genderErr;?></span>
+  <br><br>
+  <input type="submit" name="submit" value="Submit">
+</form>
+</div>
+</div>
+-->
+
+<form action="../index.php" method="post">
+<p>Your Name: <input type="text" name="yourname" /><br />
+E-mail: <input type="text" name="email" /></p>
+
+<p>Do you like this website?
+<input type="radio" name="likeit" value="Yes" checked="checked" /> Yes
+<input type="radio" name="likeit" value="No" /> No
+<input type="radio" name="likeit" value="Not sure" /> Not sure</p>
+
+<p>Your comments:<br />
+<textarea name="comments" rows="10" cols="40"></textarea></p>
+
+<p><input type="submit" value="Send it!"></p>
+</form>
 
 
 
@@ -272,5 +435,5 @@ SUMMER: You may return textbooks within the first week of classes start; afterwa
 </div>
 </div>
 <?php
-  include("includes/footer.php");
+  include("../includes/footer.php");
 ?>
