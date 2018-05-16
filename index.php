@@ -1,62 +1,35 @@
 <?php
   include("includes/header.php");
   include("includes/nav.php");
+  include("model/connect.php");
+
+  $sql = "SELECT * FROM main_page WHERE id = '5' ";
+
+
+ while( $row = $sql->fetch()) :
+
 ?>
 <a href="https://shop.uofastore.com/courselistbuilder.aspx"><img src="https://uofastore.com/images/banner/2017-08-04_BeatTheRush.png" alt="Order Textbooks" /></a>
 
+
+
 <div class="container1">
 <div class="bar">
-
-  Your name is: <?php echo $_POST['yourname']; ?><br />
-Your e-mail: <?php echo $_POST['email']; ?><br />
-<br />
-Do you like this website? <?php echo $_POST['likeit']; ?><br />
-<br />
-Comments:<br />
-<?php echo $_POST['comments']; ?>
-
-
-
-<h2 class="subheader"><?php echo $_POST['title1']; ?></h2>
 <p>
-<?php echo $_POST['text1']; ?>
-
-    <div class="medium-6 small-12 columns">
-    <h5>New Textbooks</h5>
-    <p>Mint condition, up to 50% buyback value<br />* Most Expensive</p>
-    </div>
-    <div class="medium-6 small-12 columns">
-    <h5>Used Textbooks</h5>
-    <p>Saves 25% compared to new textbooks, up to 50% buyback value<br />* May contain highlighting, notes and worn pages</p>
-    </div>
-
-    <hr /><br /><br />
-
-<center><a href="https://shop.uofastore.com/t-textbookdisclaimer.aspx"><button>Buy Textbooks</button></a></center>
+<?php echo $row['title1']; ?>
 </p>
+
+
 
 </div>
 </div>
 
-<div class="container2">
-<div class="bar">
-<h2 class="subheader"><?php echo $_POST['title2']; ?></h2>
-<p>
-<?php echo $_POST['text2']; ?>
 
-    <div class="medium-6 small-12 columns">
-    <h5>New Textbooks</h5>
-    <p>Mint condition, up to 50% buyback value<br />* Most Expensive</p>
-    </div>
-    <div class="medium-6 small-12 columns">
-    <h5>Used Textbooks</h5>
-    <p>Saves 25% compared to new textbooks, up to 50% buyback value<br />* May contain highlighting, notes and worn pages</p>
-    </div>
 
-    <hr /><br /><br />
 
-<center><a href="https://shop.uofastore.com/t-textbookdisclaimer.aspx"><button>Buy Textbooks</button></a></center>
-</p>
+  <div class="container1">
+  <div class="bar">
+
 
 </div>
 </div>
@@ -81,5 +54,6 @@ Comments:<br />
 </div>
 </div>
 <?php
+endwhile
   include("includes/footer.php");
 ?>
