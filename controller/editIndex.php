@@ -3,95 +3,15 @@
   include("../includes/nav.php");
   include("../model/connect.php");
 
+  $query = "SELECT * FROM main_page ORDER BY id DESC LIMIT 1";
+  $result = $conn->query($query);
+  $row = $result->fetch_assoc();
 ?>
-<script>
-function showUser(str) {
-    if (str == "") {
-        document.getElementById("txtHint").innerHTML = "";
-        return;
-    } else {
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-            }
-        };
-        xmlhttp.open("GET","editIndex.php?q="+str,true);
-        xmlhttp.send();
-    }
-}
-</script>
+<a href="<?php echo $row["bannerLink"]; ?>"><img src="https://shop.uofastore.com/skins/Skin_1/images/banners/<?php echo $row["bannerImg"]; ?>" alt="Order Textbooks" /></a>
 
 <div class="container2">
 <div class="bar">
-  <form>
-<select name="users" onchange="showUser(this.value)">
-  <?php
-    $query = $conn->query("SELECT * FROM main_page");
 
-      //Count total number of rows
-      $rowCount = $query->num_rows;
-
-
-    if($rowCount > 0){
-        echo '<option value="">Select Added Date</option>';
-        while($row = $query->fetch_assoc()){
-            echo '<option value="'.$row['id'].'">'.$row['added'].'</option>';
-        }
-    }else{
-        echo '<option value="">Make not Available</option>';
-    }
-  ?>
-  </select>
-</form>
-<br>
-<div id="txtHint"><b>Person info will be listed here...</b></div>
-
-
-
-<?php
-$q = intval($_GET['q']);
-
-$con = mysqli_connect('localhost','root','root','wdtCMS');
-if (!$con) {
-    die('Could not connect: ' . mysqli_error($con));
-}
-
-mysqli_select_db($con,"ajax_demo");
-$sql="SELECT * FROM user WHERE id = '".$q."'";
-$result = mysqli_query($con,$sql);
-
-echo "<table>
-<tr>
-<th>Firstname</th>
-<th>Lastname</th>
-<th>Age</th>
-<th>Hometown</th>
-<th>Job</th>
-</tr>";
-while($row = mysqli_fetch_array($result)) {
-    echo "<tr>";
-    echo "<td>" . $row['FirstName'] . "</td>";
-    echo "<td>" . $row['LastName'] . "</td>";
-    echo "<td>" . $row['Age'] . "</td>";
-    echo "<td>" . $row['Hometown'] . "</td>";
-    echo "<td>" . $row['Job'] . "</td>";
-    echo "</tr>";
-}
-echo "</table>";
-mysqli_close($con);
-?>
-
-
-
-
-<!--
   <select name="dateAdded">
   <?php
     $query = $conn->query("SELECT * FROM main_page");
@@ -147,10 +67,9 @@ mysqli_close($con);
   <br>
   <input class="button" name="submit" type="submit" value="Edit Main Page">
   </form>
--->
-</div>
-</div>
 
+</div>
+</div>
 <?php
   include("../includes/footer.php");
 ?>

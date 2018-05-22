@@ -3,21 +3,20 @@
   include("includes/nav.php");
   include("model/connect.php");
 
-  $sql = "SELECT * FROM main_page WHERE id = '5' ";
-
-
- while( $row = $sql->fetch()) :
-
+  $query = "SELECT * FROM main_page ORDER BY id DESC LIMIT 1";
+  $result = $conn->query($query);
+  $row = $result->fetch_assoc();
 ?>
-<a href="https://shop.uofastore.com/courselistbuilder.aspx"><img src="https://uofastore.com/images/banner/2017-08-04_BeatTheRush.png" alt="Order Textbooks" /></a>
 
+<a href="<?php echo $row["bannerLink"]; ?>"><img src="https://shop.uofastore.com/skins/Skin_1/images/banners/<?php echo $row["bannerImg"]; ?>" alt="Order Textbooks" /></a>
 
 
 <div class="container1">
 <div class="bar">
-<p>
-<?php echo $row['title1']; ?>
-</p>
+  <h2 class="subheader"><?php echo $row["title1"]; ?></h2>
+  <p><?php echo $row["text1"]; ?></p>
+  <center><a href="<?php echo $row["btnLink1"]; ?>"><button><?php echo $row["btn1"]; ?></button></a></center>
+
 
 
 
@@ -26,10 +25,12 @@
 
 
 
+<div class="container3">
+<div class="bar">
 
-  <div class="container1">
-  <div class="bar">
-
+  <h2 class="subheader"><?php echo $row["title2"]; ?></h2>
+  <p><?php echo $row["text2"]; ?></p>
+  <center><a href="<?php echo $row["btnLink2"]; ?>"><button><?php echo $row["btn2"]; ?></button></a></center>
 
 </div>
 </div>
@@ -54,6 +55,8 @@
 </div>
 </div>
 <?php
-endwhile
+  $result->close();
+  $conn->close();
+
   include("includes/footer.php");
 ?>
