@@ -13,9 +13,11 @@
 <div class="container2">
 <div class="bar">
 
-  <select name="dateAdded">
+  <select name="users" onchange="showUser(this.value)">
   <?php
-    $query = $conn->query("SELECT * FROM main_page ORDER BY dateAdded DESC");
+
+    include("model/connect.php");
+    $query = $conn->query("SELECT * FROM main_page ORDER BY added DESC");
 
       //Count total number of rows
       $rowCount = $query->num_rows;
@@ -32,7 +34,7 @@
   ?>
   </select>
 
-
+  <div id="txtHint"><b>Person info will be listed here...</b></div>
 
 
   <?php
@@ -41,8 +43,10 @@
   $row = $result->fetch_assoc();
 
    ?>
+   <!--
   <p>Main page was updated on <?php echo $row["added"]; ?> by ...</p>
-  <form action="" method="post">
+
+  <form action="" method="post"  id="txtHint">
   <h2>Edit Page</h2>
   <label>bannerImg:</label>
   <input class="input" name="bannerImg" type="text" required="required" value="<?php echo $row["bannerImg"]; ?>" />
@@ -68,14 +72,40 @@
   <br>
   <input class="button" name="submit" type="submit" value="Edit Main Page">
   </form>
+-->
+</div>
+</div>
 
-</div>
-</div>
+<script>
+function showUser(str) {
+    if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else {
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","ajax2.php?q="+str,true);
+        xmlhttp.send();
+    }
+}
+</script>
+
 <?php
   include("../includes/footer.php");
 ?>
 
 <?php
+/*
   include("../model/connect.php");
 
   if(isset($_POST["submit"])) {
@@ -111,5 +141,5 @@
 
     $conn->close();
   }
-
+*/
 ?>
