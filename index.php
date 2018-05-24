@@ -13,7 +13,7 @@
 
 <div class="container1">
 <div class="bar">
-  <h2 class="subheader"><?php echo $row["title1"]; ?></h2>
+  <h1 id="thin"><?php echo $row["title1"]; ?></h1>
   <p><?php echo $row["text1"]; ?></p>
   <center><a href="<?php echo $row["btnLink1"]; ?>"><button><?php echo $row["btn1"]; ?></button></a></center>
 

@@ -7,6 +7,7 @@
   $result = $conn->query($query);
   $row = $result->fetch_assoc();
 ?>
+
 <a href="<?php echo $row["bannerLink"]; ?>"><img src="https://shop.uofastore.com/skins/Skin_1/images/banners/<?php echo $row["bannerImg"]; ?>" alt="Order Textbooks" /></a>
 
 <div class="container2">
@@ -14,7 +15,7 @@
 
   <select name="dateAdded">
   <?php
-    $query = $conn->query("SELECT * FROM main_page");
+    $query = $conn->query("SELECT * FROM main_page ORDER BY dateAdded DESC");
 
       //Count total number of rows
       $rowCount = $query->num_rows;
